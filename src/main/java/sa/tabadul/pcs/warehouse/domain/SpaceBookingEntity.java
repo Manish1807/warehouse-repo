@@ -3,19 +3,18 @@ package sa.tabadul.pcs.warehouse.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import sa.tabadul.pcs.warehouse.actuate.common.CommonEntityLocalDateTime;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "BOOKING.SPACE_BOOKING")
-public class SpaceBookingEntity {
-
+public class SpaceBookingEntity extends CommonEntityLocalDateTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -52,19 +51,19 @@ public class SpaceBookingEntity {
 
     @Column(name = "approval_status_RID")
     private Integer approvalStatusRID;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "created_date")
-    private LocalDateTime createdDate;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    @Column(name = "updated_date")
-    private LocalDateTime updatedDate;
-
-    @Column(name = "is_active")
-    private Boolean isActive;
+//
+//    @Column(name = "created_by")
+//    private String createdBy;
+//
+//    @Column(name = "created_date")
+//    private LocalDateTime createdDate;
+//
+//    @Column(name = "updated_by")
+//    private String updatedBy;
+//
+//    @Column(name = "updated_date")
+//    private LocalDateTime updatedDate;
+//
+//    @Column(name = "is_active")
+//    private Boolean isActive;
 }

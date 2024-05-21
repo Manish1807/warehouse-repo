@@ -12,4 +12,6 @@ import sa.tabadul.pcs.warehouse.service.SpaceBookingService;
 public class SpaceBookingController {
     @Autowired
     private SpaceBookingService spaceBookingService;
+
+
 }
