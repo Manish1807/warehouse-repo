@@ -8,6 +8,7 @@ import sa.tabadul.pcs.warehouse.service.ValidationGroup;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -34,5 +35,10 @@ public class CommonEntityLocalDateTime {
 
     @Column(name = "is_active")
     private boolean isActive;
+
+    @PrePersist
+    protected void onCreate() {
+        createdDate = LocalDateTime.now();
+    }
 
 }
