@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sa.tabadul.pcs.warehouse.actuate.common.ApiResponse;
 import sa.tabadul.pcs.warehouse.domain.SpaceBookingEntity;
 import sa.tabadul.pcs.warehouse.service.SpaceBookingService;
 
@@ -18,18 +19,10 @@ public class SpaceBookingController {
     @Autowired
     private SpaceBookingService spaceBookingService;
 
-    @GetMapping
-    public ResponseEntity<?> getSpaceBookingDetails(@RequestParam(name = "crn")Long crn){
-        SpaceBookingEntity spaceBookingDetails = spaceBookingService.getSpaceBookingDetails(crn);
-        return ResponseEntity.of(Optional.of(spaceBookingDetails));
+    @GetMapping("/get-space-booking")
+    public ResponseEntity<ApiResponse<?>> getSpaceBookingDetails(@RequestParam(name = "crn")Long crn){
+        return spaceBookingService.getSpaceBookingDetails(crn);
     }
 
-
-
-//
-//    @PostMapping("/list")
-//    public Map<String, Object> listSpaceBookings(@RequestBody Paginator<SpaceBookingFilter> pageRequest) {
-//        return spaceBookingService.listSpaceBookings(pageRequest);
-//    }
 }
 

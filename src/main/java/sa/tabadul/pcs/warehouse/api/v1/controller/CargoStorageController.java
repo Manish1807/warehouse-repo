@@ -18,7 +18,7 @@ public class CargoStorageController {
     @Autowired
     private CargoStorageService cargoStorageService;
 
-    @PostMapping
+    @PostMapping("/add-update")
     public ResponseEntity<ApiResponse<?>> addUpdateCargoStorageRequest(@RequestBody CargoStorageRequest cargoStorageRequest){
         log.info("CargoStorageController - Inside addUpdateCargoStorageRequest method");
         return cargoStorageService.addUpdateCargoStorageRequest(cargoStorageRequest);

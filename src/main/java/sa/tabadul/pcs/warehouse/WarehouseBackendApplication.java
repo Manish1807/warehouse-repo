@@ -22,6 +22,6 @@ public class WarehouseBackendApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		long generatedCRN = utils.generateCRN();
-		System.out.println("Generated CRN : " +  generatedCRN);
+//		System.out.println("Generated CRN : " +  generatedCRN);
 	}
 }
