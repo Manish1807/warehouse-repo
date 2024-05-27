@@ -20,7 +20,7 @@ public class SpaceBookingEntity extends CommonEntityLocalDateTime {
     private Integer id;
 
     @Column(name = "CRN")
-    private Long CRN;
+    private Long crn;
 
     @Column(name = "port_contractor_id")
     private Integer portContractorId;

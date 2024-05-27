@@ -48,5 +48,8 @@ public class CommonEntityLocalDateTime {
         updatedDate = LocalDate.now();
     }
 
-
+ @PrePersist
+    protected void onCreate() {
+        createdDate = LocalDateTime.now();
+    }
 }
