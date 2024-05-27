@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CargoStorageRequest {
+    private int id;
 
     private Long crn;
 
@@ -40,4 +42,10 @@ public class CargoStorageRequest {
     private String updatedDate;
 
     private Boolean isActive;
+
+    private String orgID;
+
+    private String branchID;
+
+    private Integer portID;
 }

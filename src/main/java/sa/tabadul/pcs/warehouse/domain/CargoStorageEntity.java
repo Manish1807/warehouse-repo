@@ -49,6 +49,15 @@ public class CargoStorageEntity extends CommonEntityLocalDateTime {
     @Column(name = "approval_status_RID")
     private Long approvalStatus;
 
+    @Column(name = "org_RID")
+    private String orgID;
+
+    @Column(name = "branch_RID")
+    private String branchID;
+
+    @Column(name = "port_RID")
+    private Integer portID;
+
 //    @Column(name = "created_by", nullable = false)
 //    private String createdBy;
 //

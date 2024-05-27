@@ -24,4 +24,10 @@ public class CargoStorageController {
         return cargoStorageService.addUpdateCargoStorageRequest(cargoStorageRequest);
     }
 
+    @GetMapping("/view")
+    public ResponseEntity<ApiResponse<?>> viewCargoStorageRequest(@RequestParam (name = "crn")Long crn){
+        log.info("CargoStorageController - Inside viewCargoStorageRequest method");
+        return cargoStorageService.viewCargoStorageRequest(crn);
+    }
+
 }

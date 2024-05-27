@@ -5,6 +5,7 @@ public enum SuccessCodes {
     SUCCESSFULL_CARGO_STORAGE_REQUEST_INSERT("Cargo Storage request Submitted Successfully"),
     SUCCESSFULL_SPACE_BOOKING_REQUEST_INSERT("Space Booking request Submitted Successfully");
 
+
     private final String message;
 
     private SuccessCodes(String message) {

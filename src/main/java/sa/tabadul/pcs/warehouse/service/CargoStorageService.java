@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 import sa.tabadul.pcs.warehouse.actuate.common.ApiResponse;
 import sa.tabadul.pcs.warehouse.api.v1.request.CargoStorageRequest;
 import sa.tabadul.pcs.warehouse.domain.CargoStorageEntity;
+import sa.tabadul.pcs.warehouse.domain.SpaceBookingEntity;
+import sa.tabadul.pcs.warehouse.domain.enums.ExceptionCodes;
 import sa.tabadul.pcs.warehouse.domain.enums.SuccessCodes;
+import sa.tabadul.pcs.warehouse.exception.DataNotFoundException;
 import sa.tabadul.pcs.warehouse.repository.CargoStorageRepository;
 import sa.tabadul.pcs.warehouse.util.Utils;
 
@@ -32,7 +35,9 @@ public class CargoStorageService {
     public ResponseEntity<ApiResponse<?>> addUpdateCargoStorageRequest(CargoStorageRequest cargoStorageRequest){
         log.info("CargoStorageService - Inside addUpdateCargoStorageRequest method");
         ApiResponse<Map<String, Object>> apiResponse = new ApiResponse<>();
-        Optional<CargoStorageEntity> optionalCargoStorageEntity = cargoStorageRepository.findByCrn(cargoStorageRequest.getCrn());
+//        Optional<CargoStorageEntity> optionalCargoStorageEntity = cargoStorageRepository.findByCrn(cargoStorageRequest.getCrn());
+        Optional<CargoStorageEntity> optionalCargoStorageEntity = cargoStorageRepository.findById(cargoStorageRequest.getId());
+
         if (optionalCargoStorageEntity.isEmpty()){
             //add cargo request code:
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -51,6 +56,9 @@ public class CargoStorageService {
             cargoStorageEntity.setCreatedBy(cargoStorageRequest.getCreatedBy());
             cargoStorageEntity.setUpdatedBy(cargoStorageRequest.getUpdatedBy());
             cargoStorageEntity.setActive(cargoStorageRequest.getIsActive());
+            cargoStorageEntity.setOrgID(cargoStorageRequest.getOrgID());
+            cargoStorageEntity.setPortID(cargoStorageRequest.getPortID());
+            cargoStorageEntity.setBranchID(cargoStorageRequest.getBranchID());
             cargoStorageRepository.save(cargoStorageEntity);
 
             Map<String, Object> result = new HashMap<>();
@@ -76,6 +84,9 @@ public class CargoStorageService {
             cargoStorageEntity.setUpdatedBy(cargoStorageRequest.getUpdatedBy());
             cargoStorageEntity.setUpdatedDate(LocalDateTime.now());
             cargoStorageEntity.setActive(cargoStorageRequest.getIsActive());
+            cargoStorageEntity.setOrgID(cargoStorageRequest.getOrgID());
+            cargoStorageEntity.setPortID(cargoStorageRequest.getPortID());
+            cargoStorageEntity.setBranchID(cargoStorageRequest.getBranchID());
             cargoStorageRepository.save(cargoStorageEntity);
 
             Map<String, Object> result = new HashMap<>();
@@ -84,6 +95,17 @@ public class CargoStorageService {
             apiResponse.setResponseMessage(SuccessCodes.SUCCESSFULL_CARGO_STORAGE_REQUEST_INSERT.getMessage());
             apiResponse.setData(result);
         }
+        return ResponseEntity.ok(apiResponse);
+    }
+
+    public ResponseEntity<ApiResponse<?>> viewCargoStorageRequest(Long crn){
+        log.info("CargoStorageService - Inside viewCargoStorageRequest method");
+        Optional<CargoStorageEntity> optionalCargoStorageEntity = cargoStorageRepository.findByCrn(crn);
+        if (optionalCargoStorageEntity.isEmpty()){
+            throw new DataNotFoundException(ExceptionCodes.DATA_NOT_FOUND);
+        }
+        ApiResponse<CargoStorageEntity> apiResponse = new ApiResponse<>(HttpStatus.OK.value(),
+                SuccessCodes.SUCCESSFULL_CARGO_STORAGE_REQUEST_INSERT.getMessage(), optionalCargoStorageEntity.get());
         return ResponseEntity.ok(apiResponse);
     }
 }
