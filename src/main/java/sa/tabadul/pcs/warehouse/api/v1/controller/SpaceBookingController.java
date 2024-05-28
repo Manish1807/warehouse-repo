@@ -4,7 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import sa.tabadul.pcs.warehouse.actuate.common.ApiResponse;
+import sa.tabadul.pcs.warehouse.api.v1.request.PaginationRequestModel;
 import sa.tabadul.pcs.warehouse.domain.SpaceBookingEntity;
 import sa.tabadul.pcs.warehouse.service.SpaceBookingService;
 
@@ -24,5 +28,11 @@ public class SpaceBookingController {
         return spaceBookingService.getSpaceBookingDetails(crn);
     }
 
+    @PostMapping("/space-booking-list")
+	public ResponseEntity<?> paginationBy(@RequestBody PaginationRequestModel pagination,
+			@RequestHeader Map<String, String> headers) throws JsonProcessingException {
+                PaginationRequestModel listOfRORO = spaceBookingService.getAllPagination(pagination);
+		return ResponseEntity.ok(listOfRORO);
+	}
 }
 
