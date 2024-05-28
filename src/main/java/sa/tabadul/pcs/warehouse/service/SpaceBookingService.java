@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import sa.tabadul.pcs.warehouse.actuate.common.ApiResponse;
+import sa.tabadul.pcs.warehouse.api.v1.request.PaginationRequestModel;
 import sa.tabadul.pcs.warehouse.domain.SpaceBookingEntity;
 import sa.tabadul.pcs.warehouse.domain.enums.ExceptionCodes;
 import sa.tabadul.pcs.warehouse.domain.enums.SuccessCodes;
@@ -37,6 +38,11 @@ public class SpaceBookingService {
         ApiResponse<SpaceBookingEntity> apiResponse = new ApiResponse<>(HttpStatus.OK.value(),
                 SuccessCodes.SUCCESSFULL_SPACE_BOOKING_REQUEST_INSERT.getMessage(), optionalSpaceBookingEntity.get());
         return ResponseEntity.ok(apiResponse);
+    }
+
+    public PaginationRequestModel getAllPagination(PaginationRequestModel pagination) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllPagination'");
     }
 
 }
