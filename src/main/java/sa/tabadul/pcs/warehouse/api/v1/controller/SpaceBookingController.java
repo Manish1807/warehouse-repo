@@ -31,8 +31,8 @@ public class SpaceBookingController {
     @PostMapping("/space-booking-list")
 	public ResponseEntity<?> paginationBy(@RequestBody PaginationRequestModel pagination,
 			@RequestHeader Map<String, String> headers) throws JsonProcessingException {
-                PaginationRequestModel listOfRORO = spaceBookingService.getAllPagination(pagination);
-		return ResponseEntity.ok(listOfRORO);
+                PaginationRequestModel listOfSpace= spaceBookingService.getAllPagination(pagination);
+		return ResponseEntity.ok(listOfSpace);
 	}
 }
 
